@@ -54,17 +54,18 @@ Multiple VMs can run on a single physical server, allowing for efficient resourc
 - create a VM with basic setup using ssh key authentication
 - ssh -i <vm_key_file>.pem <username>@<public-IP>  // Example {ssh -i first-vm_key.pem vikas9821@20.189.120.89} , {chmod 600 first-vm_key.pem, //only first time}
 - steps for jenkins install -> https://chatgpt.com/share/dc1baeac-13b2-40c1-b84b-d39c19e26917
-// sudo apt update
-// sudo apt install openjdk-11-jdk -y
-// java -version
-// curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
-// sudo apt update
-// sudo apt install jenkins -y
-// systemctl list-units --type=service | grep jenkins
-// sudo systemctl start jenkins, sudo systemctl enable jenkins, sudo systemctl status jenkins
-// ps -ef | grep jenkins //ports
-
+{
+ sudo apt update
+ sudo apt install openjdk-11-jdk -y
+ java -version
+ curl -fsSL https://pkg.jenkins.io/debian/jenkins.io.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+ echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian binary/ | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+ sudo apt update
+ sudo apt install jenkins -y
+ systemctl list-units --type=service | grep jenkins
+ sudo systemctl start jenkins, sudo systemctl enable jenkins, sudo systemctl status jenkins
+ ps -ef | grep jenkins //ports
+}
 - every app installed in the server has some IP/PORT to access so for jenkins by default it uses port 8080 {ps -ef | grep jenkins, // used to check the jenkins running}
 - http://20.189.120.89:8080/ // it won't work because by defualt the incoming traffic to this server is blocked by azure when its created, you need to manually open them to access.
 - VM -> Network -> Network Settings -> inbound port rules -> add port -> fill and submit. // understand about ssh port open because that is also a call.
@@ -152,19 +153,22 @@ BGP Support: Allows dynamic routing between your on-premises network and Azure.
 9) Pratical understanding of Azure nerworking.
 - Steps
 - VM will be deployed in a private subnet and we only have private IP and we connect bastion to use VM.
-// Create RG -> Create Vnet -> security azure bastion(used to access) and azure firewall tier basic and new policy -> IP address info default -> Create
-// Create VM -> networking select vnet, subnet = default, public IP = none (you want the VM to be bhind the subnet and private) -> select (Delete NIC when VM is deleted)
-- go to resource see for the public IP ? its not available.. why ? (hint = ***tion)
-// vm -> connect -> bastion -> deploy bastion (5min) -> Auth Type SSH pvt key from local -> usr name -> pem file upload.
+-> Create RG -> Create Vnet -> security azure bastion(used to access) and azure firewall tier basic and new policy -> IP address info default -> Create
+-> Create VM -> networking select vnet, subnet = default, public IP = none (you want the VM to be bhind the subnet and private) -> select (Delete NIC when VM is deleted)
+- go to resource see for the public IP ? its not available.. why ? (hint = bastion)
+-> vm -> connect -> bastion -> deploy bastion (5min) -> Auth Type SSH pvt key from local -> usr name -> pem file upload.
 - bastion info in the portal and IAM.
 - inside bastion CLI cmd's
-// sudo su -   (changing user to the root user)
-// sudo apt update
-// sudo apt upgrade
-// apt-get install nginx -y 
-// sudo systemctl start nginx
-// sudo vim /var/www/html/index.html
+{
+-> sudo su -   (changing user to the root user)
+-> sudo apt update
+-> sudo apt upgrade
+-> apt-get install nginx -y 
+-> sudo systemctl start nginx
+-> sudo vim /var/www/html/index.html
+}
 
+{
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -176,8 +180,9 @@ BGP Support: Allows dynamic routing between your on-premises network and Azure.
     <h1> I Learnt how networking works in Azure today</h1>
 </body>
 </html> 
+}
 
-// sudo systemctl restart nginx
+-> sudo systemctl restart nginx
 
 - go to firewall and make give access using IP and PORT
 - Firewall policy -> settings -> DNAT rules -> add rule collection -> name -> rule type = DNAT -> Priority = 100 (lowest is high P1) -> ADD (8 min)
