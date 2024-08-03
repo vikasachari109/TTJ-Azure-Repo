@@ -79,3 +79,57 @@ storage_account_name="" container_name="" blob_name="index.html"
 // print the index.html page content in the terminal
 
 -------------------------------
+
+Azure Info
+
+Azure
+* Subscription (Subscription ID)
+    * A contract with Microsoft to use Azure services.
+    * Contains multiple resource groups.
+    * Used for billing and access control.
+* Resource Group
+    * A container for Azure resources.
+    * Used to manage, deploy, and monitor related resources.
+    * Contains multiple resources.
+* Resource (Resource ID)
+    * An individual Azure service instance (e.g., VM, storage account, database).
+    * Has a unique identifier within a resource group.
+Azure Active Directory (Azure AD) - microsoft EntraID
+* Tenant (Tenant ID)
+    * Represents an organization in Azure AD.
+    * Contains users, groups, and applications.
+* Object ID
+    * A unique identifier for any object in Azure AD (users, groups, applications).
+* Client ID
+    * A unique identifier for an application registered in Azure AD.
+    * Used for authentication and authorization.
+* Subscription Key
+    * Used for accessing specific Azure services (like Cognitive Services, Maps).
+    * Not directly tied to Azure AD but often used in conjunction with it.
+
+
+Step-by-Step Explanation
+1. Tenant: Represents an organization or entity in Azure AD.
+2. Subscription: A contract within a tenant for using Azure services.
+3. Resource Group: A container for related Azure resources within a subscription.
+4. Resource: An individual Azure service instance within a resource group.
+5. Object ID: A unique identifier for any entity in Azure AD.
+6. Client ID: A specific identifier for an application registered in Azure AD.
+7. Subscription Key: A key used to access specific Azure services.
+
+
+Note:
+* A tenant can have multiple subscriptions.
+* A subscription can have multiple resource groups.
+* A resource group can contain multiple resources.
+* An application in Azure AD has a Client ID and Object ID.
+* Subscription keys are typically used for API-based services and are not directly tied to Azure AD but often used in conjunction with it.
+By understanding these components, you can better organize and manage your Azure resources and applications.
+
+1. Authentication and Authorization:
+* This would involve a deeper look into Tenant ID, Client ID, Object ID, and how they relate to authentication and authorization processes in Azure AD.
+2. Resource Management:
+* We could delve into Subscription, Resource Groups, and Resource IDs, understanding how to organize and manage your Azure resources effectively.
+3. Specific Azure Service:
+* If you're working with a particular service like Azure Cognitive Services, Azure Maps, or Azure Storage, we can explore how Subscription Keys fit into the picture and how to use them.
+
